@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arc Raiders - Optimal Quest Route</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #fff; color: #101426; font-family: Inter, Arial, sans-serif; font-size: 11px; }
+  header { position: relative; text-align: center; padding-bottom: 12px; margin-bottom: 18px; border-bottom: 3px solid #171827; }
+  h1 { margin: 0 0 4px; font-size: 24px; font-weight: 900; letter-spacing: -.2px; }
+  .sub { color: #555; font-weight: 600; }
+  .legend { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .legend-item { display: inline-flex; align-items: center; gap: 5px; font-weight: 800; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 999px; display: inline-block; }
+  .grid { columns: 3; column-gap: 8px; }
+  .game-card { border: 1px solid #d4d8e2; border-left: 5px solid var(--map-color); border-radius: 6px; padding: 8px 9px; break-inside: avoid; margin: 0 0 8px; }
+  .game-card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .game-num { color: var(--map-color); font-size: 13px; font-weight: 900; }
+  .map-pill { flex: 0 0 auto; color: #fff; background: var(--map-color); border-radius: 999px; padding: 2px 9px 3px; font-size: 8px; font-weight: 900; letter-spacing: .35px; line-height: 1; }
+  .quest-row { display: grid; grid-template-columns: 12px 1fr; gap: 5px; align-items: start; margin: 3px 0; line-height: 1.2; }
+  .checkbox { width: 10px; height: 10px; border: 1px solid #9ca3af; border-radius: 3px; display: inline-block; margin-top: 1px; }
+  footer { margin-top: 26px; padding-top: 12px; border-top: 3px solid #171827; text-align: center; }
+  .dist-title { font-weight: 900; font-size: 13px; margin-bottom: 8px; }
+  .dist-bar { display: flex; height: 15px; overflow: hidden; border-radius: 999px; }
+  .dist-labels { display: flex; color: #8a8f9c; font-size: 9px; margin-top: 4px; }
+  .dist-label { text-align: center; white-space: nowrap; }
+  .credit { margin-top: 14px; color: #a3a8b3; font-size: 9px; }
+  @media print { body { padding: 10px; } }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Arc Raiders - Optimal Quest Route</h1>
+    <div class="sub">51 Games - 114 Quests - Optimal Route</div>
+  </header>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#22c55e"></span>Dam Battlegrounds (16 games)</div>
+<div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>Buried City (13 games)</div>
+<div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Spaceport (11 games)</div>
+<div class="legend-item"><span class="legend-dot" style="background:#a855f7"></span>Stella Montis (5 games)</div>
+<div class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>Blue Gate (5 games)</div>
+<div class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Riven Tides (1 game)</div>
+  </div>
+  <main class="grid">
+    
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 1</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Picking Up The Pieces</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 2</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Clearer Skies</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Trash Into Treasure</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 3</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Off The Radar</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 4</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Bad Feeling</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#a855f7">
+      <div class="game-card-header"><span class="game-num">Game 5</span><span class="map-pill">STELLA MONTIS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Hatch Repairs</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>In My Image</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Safe Passage</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Right Tool</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#3b82f6">
+      <div class="game-card-header"><span class="game-num">Game 6</span><span class="map-pill">BLUE GATE</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Better Use</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>A First Foothold</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Collision Course</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Down To Earth</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>What Goes Around</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 7</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Greasing Her Palms (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Sparks Fly</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Trifecta</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 8</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Greasing Her Palms (part 3)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The League (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 9</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Dust On The Wires</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Greasing Her Palms (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#3b82f6">
+      <div class="game-card-header"><span class="game-num">Game 10</span><span class="map-pill">BLUE GATE</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Dormant Barons</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Reduced To Rubble</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 11</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Doctor&#x27;s Orders</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Mixed Signals</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The League (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>What We Left Behind (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 12</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Medical Merchandise (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Test Case</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Waking The Grid</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>What We Left Behind (part 3)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 13</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Medical Merchandise (part 2)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>What We Left Behind (part 1)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 14</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Broken Monument</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Medical Merchandise (part 3)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 15</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Reveal In Ruins</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Marked For Death</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 16</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Lay Of The Land</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 17</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Eyes In The Sky (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Straight Record</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 18</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Eyes In The Sky (part 3)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Market Correction</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 19</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Eyes In The Sky (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 20</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Balanced Harvest</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Keeping The Memory</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 21</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Echoes Of Victory Ridge</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Untended Garden</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 22</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>After Rain Comes</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Eyes On The Prize</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Root Of The Matter</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 23</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Industrial Espionage</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 24</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Unexpected Initiative</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 25</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Symbol Of Unification</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Water Troubles</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 26</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Celeste&#x27;s Journals</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Out Of The Shadows</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Source Of The Contamination</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Major&#x27;s Footlocker</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 27</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Back On Top (part 3)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Switching The Supply</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 28</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Warm Place To Rest</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Back On Top (part 4)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 29</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Prescriptions Of The Past</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 30</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Power Out</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 31</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Back On Top (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Flickering Threat</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#3b82f6">
+      <div class="game-card-header"><span class="game-num">Game 32</span><span class="map-pill">BLUE GATE</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Back On Top (part 2)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Bees!</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Clamoring For Attention</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>With A Trace</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 33</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Espresso</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Our Presence Up There</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 34</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Lost In Transmission</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 35</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Communication Hideout</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Life Of A Pharmacist</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 36</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Digging Up Dirt</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Into The Fray</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 37</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Building A Library</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Combat Recon</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 38</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A New Type Of Plant</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>A Toxic Trail</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Bombing Run</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Paving The Way (part 1)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 39</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Paving The Way (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 40</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Deciphering The Data</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Clean Dream (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Stench Of Corruption</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Turnabout</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#3b82f6">
+      <div class="game-card-header"><span class="game-num">Game 41</span><span class="map-pill">BLUE GATE</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Armored Transports</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Groundbreaking</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>The Clean Dream (part 2)</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#3b82f6">
+      <div class="game-card-header"><span class="game-num">Game 42</span><span class="map-pill">BLUE GATE</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Dead End</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>A Prime Specimen</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Keeping An Eye Out</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Outstanding Balance</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#a855f7">
+      <div class="game-card-header"><span class="game-num">Game 43</span><span class="map-pill">STELLA MONTIS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Cold Storage</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Fragmented Logs</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Settled In Full</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#a855f7">
+      <div class="game-card-header"><span class="game-num">Game 44</span><span class="map-pill">STELLA MONTIS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Furtive Meetings</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Snap And Salvage</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#a855f7">
+      <div class="game-card-header"><span class="game-num">Game 45</span><span class="map-pill">STELLA MONTIS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Last Entry</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>With A View</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#f59e0b">
+      <div class="game-card-header"><span class="game-num">Game 46</span><span class="map-pill">BURIED CITY</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Rising Tide (part 1)</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Line In The Sand</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#64748b">
+      <div class="game-card-header"><span class="game-num">Game 47</span><span class="map-pill">RIVEN TIDES</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Battening Down</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Safe Harbor</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Shoring Up Defenses</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 48</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Wrench In The Works</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Worth Your Salt</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#a855f7">
+      <div class="game-card-header"><span class="game-num">Game 49</span><span class="map-pill">STELLA MONTIS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>Movie Night</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>On Deaf Ears</span></div>
+<div class="quest-row"><span class="checkbox"></span><span>Stable Housing</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#ef4444">
+      <div class="game-card-header"><span class="game-num">Game 50</span><span class="map-pill">SPACEPORT</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>On The Map</span></div>
+    </section>
+    <section class="game-card" style="--map-color:#22c55e">
+      <div class="game-card-header"><span class="game-num">Game 51</span><span class="map-pill">DAM BATTLEGROUNDS</span></div>
+      <div class="quest-row"><span class="checkbox"></span><span>A Rising Tide (part 2)</span></div>
+    </section>
+  </main>
+  <footer>
+    <div class="dist-title">Map Distribution</div>
+    <div class="dist-bar"><div class="dist-segment" style="width:31.3725%; background:#22c55e"></div><div class="dist-segment" style="width:25.4902%; background:#f59e0b"></div><div class="dist-segment" style="width:21.5686%; background:#ef4444"></div><div class="dist-segment" style="width:9.8039%; background:#a855f7"></div><div class="dist-segment" style="width:9.8039%; background:#3b82f6"></div><div class="dist-segment" style="width:1.9608%; background:#64748b"></div></div>
+    <div class="dist-labels"><div class="dist-label" style="width:31.3725%">Dam 16</div><div class="dist-label" style="width:25.4902%">Buried 13</div><div class="dist-label" style="width:21.5686%">Space 11</div><div class="dist-label" style="width:9.8039%">Stella 5</div><div class="dist-label" style="width:9.8039%">Blue 5</div><div class="dist-label" style="width:1.9608%">Riven 1</div></div>
+    <div class="credit">Arc Raiders Quest Optimizer - 114 quests in 51 games</div>
+  </footer>
+</body>
+</html>

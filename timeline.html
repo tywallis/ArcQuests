@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arc Raiders - 51 Game Optimal Quest Route</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 42px 20px 56px;
+    background: #0a0e17;
+    color: #e5edf8;
+    font-family: Inter, Arial, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 34px; }
+  h1 { margin: 0 0 8px; font-size: 40px; line-height: 1.05; font-weight: 900; }
+  .subtitle { color: #91a0b8; font-size: 15px; }
+  .stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+  .stat { min-width: 128px; padding: 14px 18px; border: 1px solid #1f2a3d; background: #101827; border-radius: 8px; }
+  .num { display: block; font-size: 28px; font-weight: 900; color: #fff; }
+  .label { display: block; margin-top: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #91a0b8; }
+  .legend { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 36px; }
+  .legend-item { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: #c7d2e3; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+  .timeline { position: relative; max-width: 860px; margin: 0 auto; }
+  .timeline::before { content: ""; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: #22304a; }
+  .game { position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 16px; margin-bottom: 14px; }
+  .marker { z-index: 1; width: 50px; height: 50px; border: 3px solid var(--map-color); background: #0a0e17; color: #fff; border-radius: 999px; display: grid; place-items: center; font-weight: 900; }
+  .card { border-left: 5px solid var(--map-color); background: #111a2b; border: 1px solid #22304a; border-left-width: 5px; border-radius: 8px; padding: 14px 16px 12px; }
+  .card-head { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; margin-bottom: 8px; }
+  .game-label { color: #91a0b8; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+  .map-name { color: var(--map-color); font-size: 16px; font-weight: 900; }
+  .quest-list { margin: 0; padding-left: 18px; columns: 2; column-gap: 28px; }
+  li { break-inside: avoid; margin: 4px 0; color: #e5edf8; font-size: 14px; line-height: 1.3; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arc Raiders Quest Route</h1>
+    <div class="subtitle">Optimized standard quest path</div>
+    <div class="stats">
+      <div class="stat"><span class="num">51</span><span class="label">Games</span></div>
+      <div class="stat"><span class="num">114</span><span class="label">Quests</span></div>
+      <div class="stat"><span class="num">2.24</span><span class="label">Avg Quests/Game</span></div>
+    </div>
+  </header>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#22c55e"></span>Dam Battlegrounds <b>16</b></div>
+<div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>Buried City <b>13</b></div>
+<div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Spaceport <b>11</b></div>
+<div class="legend-item"><span class="legend-dot" style="background:#a855f7"></span>Stella Montis <b>5</b></div>
+<div class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>Blue Gate <b>5</b></div>
+<div class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Riven Tides <b>1</b></div>
+  </div>
+  <main class="timeline">
+    
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">1</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 1</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Picking Up The Pieces</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">2</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 2</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Clearer Skies</li>
+<li>Trash Into Treasure</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">3</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 3</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Off The Radar</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">4</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 4</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Bad Feeling</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#a855f7">
+      <div class="marker">5</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 5</span>
+          <span class="map-name">Stella Montis</span>
+        </div>
+        <ul class="quest-list">
+          <li>Hatch Repairs</li>
+<li>In My Image</li>
+<li>Safe Passage</li>
+<li>The Right Tool</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#3b82f6">
+      <div class="marker">6</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 6</span>
+          <span class="map-name">Blue Gate</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Better Use</li>
+<li>A First Foothold</li>
+<li>Collision Course</li>
+<li>Down To Earth</li>
+<li>What Goes Around</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">7</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 7</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Greasing Her Palms (part 1)</li>
+<li>Sparks Fly</li>
+<li>The Trifecta</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">8</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 8</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Greasing Her Palms (part 3)</li>
+<li>The League (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">9</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 9</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Dust On The Wires</li>
+<li>Greasing Her Palms (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#3b82f6">
+      <div class="marker">10</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 10</span>
+          <span class="map-name">Blue Gate</span>
+        </div>
+        <ul class="quest-list">
+          <li>Dormant Barons</li>
+<li>Reduced To Rubble</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">11</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 11</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Doctor&#x27;s Orders</li>
+<li>Mixed Signals</li>
+<li>The League (part 1)</li>
+<li>What We Left Behind (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">12</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 12</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Medical Merchandise (part 1)</li>
+<li>Test Case</li>
+<li>Waking The Grid</li>
+<li>What We Left Behind (part 3)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">13</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 13</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Medical Merchandise (part 2)</li>
+<li>What We Left Behind (part 1)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">14</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 14</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Broken Monument</li>
+<li>Medical Merchandise (part 3)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">15</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 15</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Reveal In Ruins</li>
+<li>Marked For Death</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">16</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 16</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Lay Of The Land</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">17</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 17</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Eyes In The Sky (part 1)</li>
+<li>Straight Record</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">18</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 18</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Eyes In The Sky (part 3)</li>
+<li>Market Correction</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">19</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 19</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Eyes In The Sky (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">20</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 20</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Balanced Harvest</li>
+<li>Keeping The Memory</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">21</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 21</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Echoes Of Victory Ridge</li>
+<li>Untended Garden</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">22</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 22</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>After Rain Comes</li>
+<li>Eyes On The Prize</li>
+<li>The Root Of The Matter</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">23</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 23</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Industrial Espionage</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">24</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 24</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Unexpected Initiative</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">25</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 25</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Symbol Of Unification</li>
+<li>Water Troubles</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">26</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 26</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Celeste&#x27;s Journals</li>
+<li>Out Of The Shadows</li>
+<li>Source Of The Contamination</li>
+<li>The Major&#x27;s Footlocker</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">27</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 27</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Back On Top (part 3)</li>
+<li>Switching The Supply</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">28</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 28</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Warm Place To Rest</li>
+<li>Back On Top (part 4)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">29</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 29</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Prescriptions Of The Past</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">30</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 30</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Power Out</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">31</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 31</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Back On Top (part 1)</li>
+<li>Flickering Threat</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#3b82f6">
+      <div class="marker">32</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 32</span>
+          <span class="map-name">Blue Gate</span>
+        </div>
+        <ul class="quest-list">
+          <li>Back On Top (part 2)</li>
+<li>Bees!</li>
+<li>Clamoring For Attention</li>
+<li>With A Trace</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">33</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 33</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>Espresso</li>
+<li>Our Presence Up There</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">34</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 34</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Lost In Transmission</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">35</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 35</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Communication Hideout</li>
+<li>Life Of A Pharmacist</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">36</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 36</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Digging Up Dirt</li>
+<li>Into The Fray</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">37</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 37</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Building A Library</li>
+<li>Combat Recon</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">38</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 38</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>A New Type Of Plant</li>
+<li>A Toxic Trail</li>
+<li>Bombing Run</li>
+<li>Paving The Way (part 1)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">39</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 39</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>Paving The Way (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">40</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 40</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>Deciphering The Data</li>
+<li>The Clean Dream (part 1)</li>
+<li>The Stench Of Corruption</li>
+<li>Turnabout</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#3b82f6">
+      <div class="marker">41</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 41</span>
+          <span class="map-name">Blue Gate</span>
+        </div>
+        <ul class="quest-list">
+          <li>Armored Transports</li>
+<li>Groundbreaking</li>
+<li>The Clean Dream (part 2)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#3b82f6">
+      <div class="marker">42</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 42</span>
+          <span class="map-name">Blue Gate</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Dead End</li>
+<li>A Prime Specimen</li>
+<li>Keeping An Eye Out</li>
+<li>Outstanding Balance</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#a855f7">
+      <div class="marker">43</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 43</span>
+          <span class="map-name">Stella Montis</span>
+        </div>
+        <ul class="quest-list">
+          <li>Cold Storage</li>
+<li>Fragmented Logs</li>
+<li>Settled In Full</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#a855f7">
+      <div class="marker">44</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 44</span>
+          <span class="map-name">Stella Montis</span>
+        </div>
+        <ul class="quest-list">
+          <li>Furtive Meetings</li>
+<li>Snap And Salvage</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#a855f7">
+      <div class="marker">45</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 45</span>
+          <span class="map-name">Stella Montis</span>
+        </div>
+        <ul class="quest-list">
+          <li>Last Entry</li>
+<li>With A View</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#f59e0b">
+      <div class="marker">46</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 46</span>
+          <span class="map-name">Buried City</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Rising Tide (part 1)</li>
+<li>Line In The Sand</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#64748b">
+      <div class="marker">47</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 47</span>
+          <span class="map-name">Riven Tides</span>
+        </div>
+        <ul class="quest-list">
+          <li>Battening Down</li>
+<li>Safe Harbor</li>
+<li>Shoring Up Defenses</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">48</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 48</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Wrench In The Works</li>
+<li>Worth Your Salt</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#a855f7">
+      <div class="marker">49</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 49</span>
+          <span class="map-name">Stella Montis</span>
+        </div>
+        <ul class="quest-list">
+          <li>Movie Night</li>
+<li>On Deaf Ears</li>
+<li>Stable Housing</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#ef4444">
+      <div class="marker">50</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 50</span>
+          <span class="map-name">Spaceport</span>
+        </div>
+        <ul class="quest-list">
+          <li>On The Map</li>
+        </ul>
+      </div>
+    </section>
+    <section class="game" style="--map-color:#22c55e">
+      <div class="marker">51</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="game-label">Game 51</span>
+          <span class="map-name">Dam Battlegrounds</span>
+        </div>
+        <ul class="quest-list">
+          <li>A Rising Tide (part 2)</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

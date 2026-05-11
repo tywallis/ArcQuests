@@ -1,0 +1,56 @@
+Best schedule (Greedy, 24 games):
+Total games: 24
+------------------------------------------------------------
+Game 1: Dam Battlegrounds
+    • Picking Up The Pieces
+Game 2: Dam Battlegrounds
+    • Clearer Skies
+    • Trash Into Treasure
+Game 3: Dam Battlegrounds
+    • Off The Radar
+Game 4: Dam Battlegrounds
+    • A Bad Feeling
+Game 5: Dam Battlegrounds
+    • Hatch Repairs
+    • The Right Tool
+Game 6: Dam Battlegrounds
+    • A Better Use
+    • Down To Earth
+Game 7: Dam Battlegrounds
+    • Greasing Her Palms (part 1)
+    • The Trifecta
+Game 8: Buried City
+    • Greasing Her Palms (part 3)
+Game 9: Spaceport
+    • Greasing Her Palms (part 2)
+Game 10: Dam Battlegrounds
+    • Dormant Barons
+Game 11: Dam Battlegrounds
+    • What We Left Behind (part 2)
+Game 12: Buried City
+    • What We Left Behind (part 1)
+Game 13: Spaceport
+    • What We Left Behind (part 3)
+Game 14: Dam Battlegrounds
+    • Broken Monument
+Game 15: Dam Battlegrounds
+    • Straight Record
+Game 16: Dam Battlegrounds
+    • Keeping The Memory
+Game 17: Dam Battlegrounds
+    • Echoes Of Victory Ridge
+Game 18: Buried City
+    • Marked For Death
+Game 19: Buried City
+    • Market Correction
+Game 20: Buried City
+    • Eyes On The Prize
+Game 21: Buried City
+    • Industrial Espionage
+Game 22: Buried City
+    • Unexpected Initiative
+Game 23: Dam Battlegrounds
+    • A Symbol Of Unification
+Game 24: Dam Battlegrounds
+    • The Major's Footlocker
+------------------------------------------------------------
