@@ -65,7 +65,7 @@ This writes `results_bp_quest_list.txt` and `best_schedule_bp_quest_list.json`.
 The ILP solver prioritizes routes in this order:
 
 1. Fewest total games.
-2. Fewest games that complete more than 3 quests.
+2. Fewest games that require completing more than 3 quests (since time in game is a limited resource).
 3. Earlier quest completion when the first two criteria are tied.
 
 ## Generate Graphics
